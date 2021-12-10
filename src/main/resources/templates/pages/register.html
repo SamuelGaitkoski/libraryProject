@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Biblioteca - Cadastro de livros</title>
+        <link rel="stylesheet" th:href="@{css/style.css}" />
+    </head>
+
+    <body>
+
+    <main>
+
+        <form method="post" th:action="@{/books}" th:object="${objBook}">
+
+            <label>Nome da obra:</label>
+            <input type="text" th:field="*{name}" required/>
+
+            <label>Nome do autor da obra:</label>
+            <input type="text" th:field="*{author}" required/>
+
+            <label>Nome da editora da obra:</label>
+            <input type="text" th:field="*{publishing}" required/>
+
+            <label>Ano de publicação da obra:</label>
+            <input type="number" th:field="*{yearOfPublication}" required/>
+
+            <label>Gênero da obra</label>
+            <select th:field="*{genre}">
+                <option th:each="genre : ${T(br.com.andersonchoren.library.model.Genre).values()}" 
+                th:value="${genre}" th:text="${genre}"></option>
+            </select>
+
+            <div>
+                <button type="submit">Cadastrar</button>
+                <button type="reset">Limpar todos os dados</button>
+            </div>
+
+        </form>
+        
+    </main>
+    
+    </body>
+
+</html>
